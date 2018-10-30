@@ -1,23 +1,57 @@
-# Compiled class file
-*.class
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+dependency-reduced-pom.xml
 
-# Log file
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.ipr
+*.iml
+
+### NetBeans ###
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Eclipse ###
+*.eclipse
+*.project
+*.classpath
+.extract*
+.settings*
+
+### Plugins ###
+*.eclipse-pmd
+**.metadata
+*.pmd
+*.checkstyle
+*-result.html
+rebel_project.xml
+
+### npm ###
+node
+node_modules
+frontend-dest
+data/
+
+.DS_Store
+*.py~
+*.swp
+*.pyc
+*~
+target/
+*#
 *.log
+/bin/
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
