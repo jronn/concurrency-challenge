@@ -1,47 +1,40 @@
 package sven.workshop.concurrency;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class WhoEndsFirstLooping {
-
-	private List<String> threadReady = new ArrayList<>();
-
+public class ThreadSleeping {
+	
+	private List<String> threadReady = new CopyOnWriteArrayList<>();
+	
 	Runnable worker = () -> {
 		Logger.getGlobal().log(Level.INFO, Thread.currentThread().getName() + " started");
 		makeFakeWork();
 	};
-
+	
 	private synchronized void makeFakeWork() {
-
-		while (!Thread.interrupted()) {
-			// Do some Fakey McFake Work
+		try {
+			Sleeper.sleep(10);
+			threadReady.add(Thread.currentThread().getName());
+		} catch (RuntimeException e) {
+			Logger.getGlobal().log(Level.SEVERE, Thread.currentThread().getName() + " interrupted");
 		}
-		threadReady.add(Thread.currentThread().getName());
 	}
-
+	
 	public List<String> runMe() {
-
+		
 		var t0 = new Thread(worker);
 		var t1 = new Thread(worker);
 		var t2 = new Thread(worker);
-
+		
 		t0.start();
 		t1.start();
-		t1.interrupt();
 		t2.start();
-
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-
-		t0.interrupt();
-		t2.interrupt();
+		t1.interrupt();
+		Sleeper.sleep(100);
+		
 		return threadReady;
 	}
-
 }

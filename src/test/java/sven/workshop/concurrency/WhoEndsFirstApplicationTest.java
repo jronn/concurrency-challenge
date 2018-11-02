@@ -11,7 +11,7 @@ public class WhoEndsFirstApplicationTest {
 	@Test
 	public void runTheSleep() {
 		
-		var list = new WhoEndsFirstSleeping().runMe();
+		var list = new ThreadSleeping().runMe();
 		Assertions.assertEquals(2, list.size());
 		Logger.getGlobal().log(Level.INFO, list.toString());
 	}
@@ -20,8 +20,8 @@ public class WhoEndsFirstApplicationTest {
 	@Test
 	public void runTheLoop() {
 		
-		var list = new WhoEndsFirstLooping().runMe();
-		Assertions.assertEquals(0, list.size());
+		var list = new ThreadLooping().runMe();
+		Assertions.assertEquals(3, list.size());
 		Logger.getGlobal().log(Level.INFO, list.toString());
 	}
 	
