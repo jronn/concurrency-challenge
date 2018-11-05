@@ -12,3 +12,5 @@ Please try to find an answer to these questions:
 
  * The order of the ended threads is not guaranteed. Is this behaviour expected and if so, why? 
  
+ 
+After doing this exercise there is a one hour seminar available with details and discussions.
