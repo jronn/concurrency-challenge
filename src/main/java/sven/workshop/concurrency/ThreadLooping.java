@@ -7,36 +7,36 @@ import java.util.logging.Logger;
 
 public class ThreadLooping {
 
-	private List<String> threadReady = new CopyOnWriteArrayList<>();
+  private List<String> threadReady = new CopyOnWriteArrayList<>();
 
-	Runnable worker = () -> {
-		Logger.getGlobal().log(Level.INFO, Thread.currentThread().getName() + " started");
-		makeFakeWork();
-	};
+  Runnable worker = () -> {
+    Logger.getGlobal().log(Level.INFO, Thread.currentThread().getName() + " started");
+    makeFakeWork();
+  };
 
-	private synchronized void makeFakeWork() {
+  private synchronized void makeFakeWork() {
 
-		while (!Thread.interrupted()) {
-			// Do some Fakey McFake Work
-		}
-		threadReady.add(Thread.currentThread().getName());
-	}
+    while (!Thread.interrupted()) {
+      // Do some Fakey McFake Work
+    }
+    threadReady.add(Thread.currentThread().getName());
+  }
 
-	public List<String> runMe() {
+  public List<String> runMe() {
 
-		var t3 = new Thread(worker);
-		var t4 = new Thread(worker);
-		var t5 = new Thread(worker);
+    var t3 = new Thread(worker);
+    var t4 = new Thread(worker);
+    var t5 = new Thread(worker);
 
-		t3.start();
-		t4.start();
-		t5.start();
-		Sleeper.sleep(5);
-		t3.interrupt();
-		t4.interrupt();
-		t5.interrupt();
-		Sleeper.sleep(50);
-		return threadReady;
-	}
+    t3.start();
+    t4.start();
+    t5.start();
+    Sleeper.sleep(5);
+    t3.interrupt();
+    t4.interrupt();
+    t5.interrupt();
+    Sleeper.sleep(50);
+    return threadReady;
+  }
 
 }
