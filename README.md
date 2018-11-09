@@ -1,16 +1,22 @@
 # Concurrency Challenge
 
-## Exercise 2 - What Comes First?
+## Exercise 3 - Getting Blocked, Dump it!
 
-There are two tests starting three threads each. Which thread ends first? 
+This is a simple class (totally stolen from [Heinz Kabutz](https://www.javaspecialists.eu/archive/Issue147.html)) causing a race condition.
 
-Please try to find an answer to these questions: 
+Your task is to run this project, use a dump tool and analyse the outcome.
 
- * Why are the test results different in the two tests, why aren't threads interrupted equally?
- 
- * It is common in threading examples to ignore the InterruptedException. Why and how should we handle the interrupt?
+In your JDK you'll find jstack. Run the program, find the PID and execute the `jstack` command on that PID
 
- * The order of the ended threads is not guaranteed. Is this behaviour expected and if so, why? 
- 
- 
-After doing this exercise there is a one hour seminar available with details and discussions.
+    > ps -ef | grep concurrency.Blocking
+    > jstack {pid.from.above}
+
+To this point, it is mandatory for this exercise. You HAVE to understand the output! Check each and every thread and make sure you know what it is doing before you jump to next thread. And yes, [Heinz' chapter about the blocking](https://www.javaspecialists.eu/archive/Issue147.html) is old but still very valid. 
+
+Everything below is a bonus. Way more interesting ways to check our processes so please try them.
+
+Can we get the same information from the JDK tool `jconsole`?
+
+[Arthas](https://github.com/alibaba/arthas) is a tool made by Alibaba. It will give as a "graphical" diagnosis in a console. By not running with a GUI it is very handy in server environments. Try it!
+
+
