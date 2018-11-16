@@ -1,22 +1,13 @@
 # Concurrency Challenge
 
-## Exercise 3 - Getting Blocked, Dump it!
+## Exercise 4 - The Unintentional Overwrite
 
-This is a simple class (totally stolen from [Heinz Kabutz](https://www.javaspecialists.eu/archive/Issue147.html)) causing a race condition.
+Finally time for you to start coding!
 
-Your task is to run this project, use a dump tool and analyse the outcome.
+This branch consists of a simple cache implementation. Your task it to break it, expose the weaknesses - and fix it.
 
-In your JDK you'll find jstack. Run the program, find the PID and execute the `jstack` command on that PID
-
-    > ps -ef | grep concurrency.Blocking
-    > jstack {pid.from.above}
-
-To this point, it is mandatory for this exercise. You HAVE to understand the output! Check each and every thread and make sure you know what it is doing before you jump to next thread. And yes, [Heinz' chapter about the blocking](https://www.javaspecialists.eu/archive/Issue147.html) is old but still very valid. 
-
-Everything below is a bonus. Way more interesting ways to check our processes so please try them.
-
-Can we get the same information from the JDK tool `jconsole`?
-
-[Arthas](https://github.com/alibaba/arthas) is a tool made by Alibaba. It will give as a "graphical" diagnosis in a console. By not running with a GUI it is very handy in server environments. Try it!
-
-
+ * Make tests that checks the initial logic
+ * Make tests that breaks the cache
+ * Refactor the cache until your tests are ok
+ 
+This is a TDD approach of testing code. It works exactly as "normal" TDD but we already have an implementation. The code is your first specification.
