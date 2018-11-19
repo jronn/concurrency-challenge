@@ -14,7 +14,10 @@ public final class AgeCache {
   }
 
   void setAge(final String key, final Integer age) {
-    cacheMap.put(key, new Data(age));
+    
+    if (!cacheMap.containsKey(key)) {
+      cacheMap.put(key, new Data(age));
+    }
   }
   
   Optional<Instant> getCreationTime(String key) {
@@ -23,6 +26,10 @@ public final class AgeCache {
 
   void reset(final String key) {
     cacheMap.remove(key);
+  }
+  
+  int size() {
+    return cacheMap.size();
   }
 
   private final class Data {
