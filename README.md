@@ -1,6 +1,6 @@
 # Concurrency Challenge
 
-## Exercise 5 - Get rid of Synchronised
+## Exercise 5 - Get rid of Synchronized
 
 Surely, I hate that word!
 
@@ -26,7 +26,7 @@ Here is what to do:
   
     * Bonus task; What happens if you remove `volatile` in `DangerousAgeCache`? If you test it, make sure you understand the outcome
     
-Now, when you sorted out all of the above, your mission is to create a new implementation of the `AgeCache` interface *WITHOUT* the `synchronized` keyword. Hint: [https://www.baeldung.com/java-concurrent-locks](`java.util.concurrent.locks.Lock` implementations).
+Now, when you sorted out all of the above, your mission is to create a new implementation of the `AgeCache` interface *WITHOUT* the `synchronized` keyword. Hint: [java.util.concurrent.locks.Lock implementations](https://www.baeldung.com/java-concurrent-locks) are handy here.
 
-As usual we will have a meeting and go through the code.
+As usual there will be a meeting to go through the code.
 
