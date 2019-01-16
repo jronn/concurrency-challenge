@@ -1,19 +1,20 @@
 package sven.workshop.concurrency;
 
-public final class DangerousAgeCache {
+public final class DangerousAgeCache implements AgeCache {
 
   private volatile int age;
 
-  public DangerousAgeCache(final int startAge) {
+  DangerousAgeCache(final int startAge) {
     age = startAge;
   }
 
-  int getAge() {
+  @Override
+  public int getAge() {
     return age;
   }
 
+  @Override
   public void increase(final int amount) {
-
     final int check = age + amount;
     age = check;
     if (age != check) {
@@ -21,6 +22,7 @@ public final class DangerousAgeCache {
     }
   }
 
+  @Override
   public void decrease(final int amount) {
     increase(-amount);
   }

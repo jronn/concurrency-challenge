@@ -1,5 +1,7 @@
 package sven.workshop.concurrency;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.awaitility.Awaitility;
@@ -7,11 +9,11 @@ import org.awaitility.Duration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AgeCacheTest {
+public class DangerousAgeCacheTest {
 
   final static int THREADS = 2;
   final static CountDownLatch latch = new CountDownLatch(THREADS);
-  final static DangerousAgeCache cache = new DangerousAgeCache(1000);
+  final static AgeCache cache = new DangerousAgeCache(1000);
   volatile AtomicBoolean threadFailed = new AtomicBoolean(false);
 
   @Test()
@@ -25,6 +27,15 @@ public class AgeCacheTest {
       }
     };
 
+    final Timer timer = new Timer(true);
+    timer.schedule(new TimerTask() {
+
+      @Override
+      public void run() {
+        System.out.println(cache.getAge());
+      }
+    }, 5, 5);
+
     for (int i = 0; i < THREADS; i++) {
       final Thread t = thread();
       t.setUncaughtExceptionHandler(exceptionHandler);
@@ -32,6 +43,7 @@ public class AgeCacheTest {
     }
 
     Awaitility.await().atMost(Duration.TEN_SECONDS).untilTrue(threadFailed);
+    timer.cancel();
     Assertions.assertTrue(threadFailed.get());
   }
 

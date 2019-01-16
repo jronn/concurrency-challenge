@@ -1,13 +1,32 @@
 # Concurrency Challenge
 
-## Exercise 4 - The Unintentional Overwrite
+## Exercise 5 - Get rid of Synchronised
 
-Finally time for you to start coding!
+Surely, I hate that word!
 
-This branch consists of a simple cache implementation. Your task it to break it, expose the weaknesses - and fix it.
+There are two implementations of the `AgeCache` interface and we have tests for both classes. 
 
- * Make tests that checks the initial logic
- * Make tests that breaks the cache
- * Refactor the cache until your tests are ok
- 
-This is a TDD approach of testing code. It works exactly as "normal" TDD but we already have an implementation. The code is your first specification.
+[DangerousAgeCache](src/main/java/sven/workshop/concurrency/DangerousAgeCache.java) will cause problems. As you can see in the test [DangerousAgeCacheTest](src/test/java/sven/workshop/concurrency/DangerousAgeCacheTest.java) the expected result is a crash.
+
+[UglyAgeCache](src/main/java/sven/workshop/concurrency/UglyAgeCache.java) on the other hand will run without race conditions, and the test [UglyAgeCacheTest](src/test/java/sven/workshop/concurrency/UglyAgeCacheTest.java) would run forever if there wasn't a timeout included. It has the ugly keyword though...
+
+Here is what to do: 
+
+  * Read the tests and make sure you understand what they are doing
+  
+    * What is an `UncaughtExceptionHandler`?
+  
+    * What is a `Timer` and how does it work?
+    
+    * What is the `Timer`-logic doing?
+    
+    * `Awaitility`, what is it and why do we use it?
+    
+  * Why is one test expected to crash and why is the other not?
+  
+    * Bonus task; What happens if you remove `volatile` in `DangerousAgeCache`? If you test it, make sure you understand the outcome
+    
+Now, when you sorted out all of the above, your mission is to create a new implementation of the `AgeCache` interface *WITHOUT* the `synchronized` keyword. Hint: [https://www.baeldung.com/java-concurrent-locks](`java.util.concurrent.locks.Lock` implementations).
+
+As usual we will have a meeting and go through the code.
+
