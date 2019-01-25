@@ -1,32 +1,28 @@
 # Concurrency Challenge
 
-## Exercise 5 - Get rid of Synchronized
+## Exercise 6 - Modernize Tests
 
-Surely, I hate that word!
+This exercise has the same code base as the previous, but let us check the tests instead.
 
-There are two implementations of the `AgeCache` interface and we have tests for both classes. 
+They are not-so-very-modern and there are a lot that can be improved. Lets have a look at them.
 
-[DangerousAgeCache](src/main/java/sven/workshop/concurrency/DangerousAgeCache.java) will cause problems. As you can see in the test [DangerousAgeCacheTest](src/test/java/sven/workshop/concurrency/DangerousAgeCacheTest.java) the expected result is a crash.
+[DangerousAgeCacheTest](src/test/java/sven/workshop/concurrency/DangerousAgeCacheTest.java) the expected result is a crash.
 
-[UglyAgeCache](src/main/java/sven/workshop/concurrency/UglyAgeCache.java) on the other hand will run without race conditions, and the test [UglyAgeCacheTest](src/test/java/sven/workshop/concurrency/UglyAgeCacheTest.java) would run forever if there wasn't a timeout included. It has the ugly keyword though...
+[UglyAgeCacheTest](src/test/java/sven/workshop/concurrency/UglyAgeCacheTest.java) would run forever if there wasn't a timeout included. 
+
 
 Here is what to do: 
 
-  * Read the tests and make sure you understand what they are doing
+  * Refactor with modern (Java 8 or later) features
   
-    * What is an `UncaughtExceptionHandler`?
+    * Can the `UncaughtExceptionHandler` be replaced?
   
-    * What is a `Timer` and how does it work?
+    * How can we replace the `Timer`? Do we need it at all?
     
-    * What is the `Timer`-logic doing?
+    * Can the creation of the worker threads be improved?
     
-    * `Awaitility`, what is it and why do we use it?
+    * Why do we have a `CountdownLatch`?
     
-  * Why is one test expected to crash and why is the other not?
-  
-    * Bonus task; What happens if you remove `volatile` in `DangerousAgeCache`? If you test it, make sure you understand the outcome
-    
-Now, when you sorted out all of the above, your mission is to create a new implementation of the `AgeCache` interface *WITHOUT* the `synchronized` keyword. Hint: [java.util.concurrent.locks.Lock implementations](https://www.baeldung.com/java-concurrent-locks) are handy here.
 
 As usual there will be a meeting to go through the code.
 
