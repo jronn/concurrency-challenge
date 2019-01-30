@@ -2,7 +2,7 @@
 
 ## Exercise 5 - Get rid of Synchronized
 
-Surely, I hate that word!
+Surely, I do hate that word!
 
 There are two implementations of the `AgeCache` interface and we have tests for both classes. 
 
